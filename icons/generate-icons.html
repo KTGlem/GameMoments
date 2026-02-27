@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     GameMoments — Icon Generator
+     Open this file locally in a browser to download icon PNGs.
+     After downloading, place icon-192.png and icon-512.png in
+     the /icons/ folder. They are referenced by manifest.json.
+     ============================================================ -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Generate Icons</title>
+<style>
+  body { font-family: sans-serif; background: #111; color: #eee; padding: 32px; }
+  canvas { display: block; margin: 16px 0; border: 1px solid #333; }
+  button { background: #00e5ff; color: #000; border: none; padding: 10px 20px;
+           font-weight: bold; border-radius: 6px; cursor: pointer; margin: 8px 4px; }
+  .row { display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-start; }
+  h2 { color: #00e5ff; margin-top: 24px; }
+</style>
+</head>
+<body>
+<h1>GameMoments — Icon Generator</h1>
+<p>Click each button to download the PNG icon. Then place the files in <code>/icons/</code>.</p>
+
+<div class="row">
+  <div>
+    <h2>192×192</h2>
+    <canvas id="c192" width="192" height="192"></canvas>
+    <button onclick="download('c192', 'icon-192.png')">⬇ Download icon-192.png</button>
+  </div>
+  <div>
+    <h2>512×512</h2>
+    <canvas id="c512" width="512" height="512"></canvas>
+    <button onclick="download('c512', 'icon-512.png')">⬇ Download icon-512.png</button>
+  </div>
+</div>
+
+<script>
+function drawIcon(canvas) {
+  const w = canvas.width, h = canvas.height;
+  const ctx = canvas.getContext('2d');
+  const scale = w / 192;
+
+  // Background
+  ctx.fillStyle = '#0d0d1a';
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(0, 0, w, h, 28 * scale);
+    ctx.fill();
+  } else {
+    ctx.fillRect(0, 0, w, h);
+  }
+
+  // Outer border
+  ctx.strokeStyle = '#00e5ff';
+  ctx.lineWidth   = 5 * scale;
+  ctx.strokeRect(8 * scale, 8 * scale, (192 - 16) * scale, (192 - 16) * scale);
+
+  // Inner subtle border
+  ctx.strokeStyle = 'rgba(0,229,255,0.2)';
+  ctx.lineWidth   = 2 * scale;
+  ctx.strokeRect(16 * scale, 16 * scale, (192 - 32) * scale, (192 - 32) * scale);
+
+  // "GM" text
+  ctx.fillStyle    = '#00e5ff';
+  ctx.font         = `bold ${78 * scale}px Arial Black, Arial`;
+  ctx.textAlign    = 'center';
+  ctx.textBaseline = 'middle';
+  // Glow
+  ctx.shadowColor  = '#00e5ff';
+  ctx.shadowBlur   = 10 * scale;
+  ctx.fillText('GM', w / 2, h * 0.48);
+  ctx.shadowBlur   = 0;
+
+  // Dot row
+  ctx.fillStyle = 'rgba(0,229,255,0.55)';
+  [60, 96, 132].forEach((x) => {
+    ctx.beginPath();
+    ctx.arc(x * scale, 155 * scale, 7 * scale, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+function download(canvasId, filename) {
+  const a    = document.createElement('a');
+  a.href     = document.getElementById(canvasId).toDataURL('image/png');
+  a.download = filename;
+  a.click();
+}
+
+// Draw both icons on load
+drawIcon(document.getElementById('c192'));
+drawIcon(document.getElementById('c512'));
+</script>
+</body>
+</html>
