@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#0d0d1a"/>
+  <!-- Outer neon border -->
+  <rect x="14" y="14" width="484" height="484" rx="68"
+        fill="none" stroke="#00e5ff" stroke-width="14"/>
+  <!-- Inner subtle border -->
+  <rect x="30" y="30" width="452" height="452" rx="54"
+        fill="none" stroke="#00e5ff" stroke-width="3" opacity="0.25"/>
+  <!-- GM letters -->
+  <text x="256" y="305"
+        font-family="'Arial Black', 'Impact', Arial, sans-serif"
+        font-size="210" font-weight="900"
+        fill="#00e5ff" text-anchor="middle">GM</text>
+  <!-- Pixel dot row — visual accent -->
+  <circle cx="166" cy="415" r="14" fill="#00e5ff" opacity="0.55"/>
+  <circle cx="222" cy="415" r="14" fill="#00e5ff" opacity="0.55"/>
+  <circle cx="278" cy="415" r="14" fill="#00e5ff" opacity="0.55"/>
+  <circle cx="334" cy="415" r="14" fill="#00e5ff" opacity="0.55"/>
+  <!-- Small "⚽" hint lines below GM -->
+  <line x1="140" y1="338" x2="372" y2="338" stroke="#00e5ff" stroke-width="3" opacity="0.2"/>
+</svg>
